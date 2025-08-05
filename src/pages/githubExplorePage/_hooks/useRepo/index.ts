@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { GithubRepo } from "../../../../types/githubRepo";
+import api from "../../../../lib/axios";
 
 export const useFetchRepos = (username: string, expand: boolean) => {
     const [repos, setRepos] = useState<GithubRepo[]>([]);
@@ -14,12 +15,18 @@ export const useFetchRepos = (username: string, expand: boolean) => {
         try {
           setLoading(true);
           setError(null);
-          const res = await axios.get(
-            `https://api.github.com/users/${username}/repos`
-          );
+
+          const res = await api.get<GithubRepo[]>(`/users/${username}/repos`);
           setRepos(res.data);
         } catch (err) {
-          setError("Failed to fetch repositories");
+          
+          if (axios.isAxiosError(err)) {
+            const message = err.response?.data?.message || "Failed to fetch repositories";
+            setError(message);
+          } else {
+            setError("An unexpected error occurred");
+          }
+
         } finally {
           setLoading(false);
         }
