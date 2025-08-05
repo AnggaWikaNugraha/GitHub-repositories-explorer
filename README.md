@@ -6,7 +6,7 @@ A simple and responsive React + TypeScript app that lets users search GitHub use
 
 ## 🔗 Demo
 
-- 🌐 [Live Demo](https://your-username.github.io/github-repos-explorer/)
+- 🌐 [Live Demo](https://anggawikanugraha.github.io/GitHub-repositories-explorer/)
 - 📁 [Source Code](https://github.com/AnggaWikaNugraha/GitHub-repositories-explorer)
 
 ---
