@@ -1,6 +1,9 @@
 import React from 'react'
 import { useState } from "react";
 import { useFetchRepos } from "../../_hooks/useRepo";
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../../store/store';
+import { toggleExpanded } from '../../../../store/feature/UserExpand';
 
 interface Props {
     username: string;
@@ -8,14 +11,16 @@ interface Props {
 
 const UserItem: React.FC<Props> = ({ username }) => {
 
-    const [expanded, setExpanded] = useState(false);
+    const dispatch = useDispatch();
+    const expanded = useSelector((state: RootState) => state.userUI.expandedUsers[username] || false
+    );
     const { repos, loading, error } = useFetchRepos(username, expanded);
 
     return (
         <div className="border rounded p-2">
             <div
                 className="flex justify-between items-center cursor-pointer font-medium"
-                onClick={() => setExpanded((prev) => !prev)}
+                onClick={() => dispatch(toggleExpanded(username))}
             >
                 <span>{username}</span>
                 <span>{expanded ? "▴" : "▾"}</span>

@@ -7,11 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../../../store/store';
 import { setInput, setQuery } from '../../../../store/feature/searchSlice';
 
-interface SearchBarProps {
-  onUserSelect: (username: string) => void;
-}
-
-const SearchBar: React.FC<SearchBarProps> = ({ onUserSelect }) => {
+const SearchBar = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   const input = useSelector((state: RootState) => state.search.input);
