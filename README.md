@@ -7,13 +7,13 @@ A simple and responsive React + TypeScript app that lets users search GitHub use
 ## 🔗 Demo
 
 - 🌐 [Live Demo](https://your-username.github.io/github-repos-explorer/)
-- 📁 [Source Code](https://github.com/your-username/github-repos-explorer)
+- 📁 [Source Code](https://github.com/AnggaWikaNugraha/GitHub-repositories-explorer)
 
 ---
 
 ## 📋 Features
 
-- 🔍 Search up to 5 GitHub users matching input text  
+- 🔍 Search GitHub users matching input text  
 - 👤 Click a user to expand and view their repositories  
 - ⭐ Display repo name, description, and stargazer count  
 - ⚡ Debounced search with loading & error states  
@@ -41,8 +41,8 @@ A simple and responsive React + TypeScript app that lets users search GitHub use
 ### 🔧 Installation
 
 ```bash
-git clone https://github.com/your-username/github-repos-explorer.git
-cd github-repos-explorer
+git clone https://github.com/AnggaWikaNugraha/GitHub-repositories-explorer.git
+cd GitHub-repositories-explorer
 npm install
 
 ## 🚀 Run Dev Server
@@ -71,14 +71,6 @@ Responsive mobile UI included.
 Proper error handling and loading states implemented.
 
 Repo list loads only when user is expanded (optimized UX).
-
-## 🧪 Tests
-✅ useFetchRepos() and useSearch() hooks tested
-
-✅ SearchBar and UserItem components tested
-
-✅ Loading, error, and expand/collapse behavior tested
-
 
 ## ✍️ Author
 Created by @AnggaWikaNugraha
