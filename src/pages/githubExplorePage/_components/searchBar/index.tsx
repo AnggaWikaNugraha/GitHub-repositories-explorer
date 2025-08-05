@@ -61,9 +61,13 @@ const SearchBar = () => {
         {error && <p className="text-sm text-red-500 mt-2">{error}</p>}
 
         <div className="mt-4 space-y-2">
-          {users.map((user) => (
-            <UserItem key={user.id} username={user.login} />
-          ))}
+          {query.trim() && !loading && !error && users.length === 0 ? (
+            <p className="text-sm text-gray-500">No users found.</p>
+          ) : (
+            users.map((user) => (
+              <UserItem key={user.id} username={user.login} />
+            ))
+          )}
         </div>
 
       </div>
