@@ -3,6 +3,9 @@ import React from 'react'
 import { useState } from "react";
 import { useSearch } from '../../_hooks/useUserSearch';
 import UserItem from "../../_components/userItem";
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../../store/store';
+import { setInput, setQuery } from '../../../../store/feature/searchSlice';
 
 interface SearchBarProps {
   onUserSelect: (username: string) => void;
@@ -10,15 +13,16 @@ interface SearchBarProps {
 
 const SearchBar: React.FC<SearchBarProps> = ({ onUserSelect }) => {
 
-  const [input, setInput] = useState(""); // input dari user
-  const [query, setQuery] = useState(""); // trigger untuk useSearch
+  const dispatch = useDispatch<AppDispatch>();
+  const input = useSelector((state: RootState) => state.search.input);
+  const query = useSelector((state: RootState) => state.search.query);
   const { users, loading, error } = useSearch(query);
 
   const handleSearch = () => {
-    if (input.trim()) setQuery(input.trim());
+    if (input.trim()) dispatch(setQuery(input.trim()));
   };
 
-  const handleKeyDown = (e: any) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") handleSearch();
   };
 
@@ -31,7 +35,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onUserSelect }) => {
           type="text"
           placeholder="Enter username"
           value={input}
-          onChange={(e) => setInput(e.target.value)}
+          onChange={(e) => dispatch(setInput(e.target.value))}
           onKeyDown={handleKeyDown}
           className="border border-gray-300 rounded px-4 py-2 w-full focus:outline-none focus:ring-2 focus:ring-blue-400"
         />
@@ -50,7 +54,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onUserSelect }) => {
             <UserItem key={user.id} username={user.login} />
           ))}
         </div>
-        
+
       </div>
 
     </>
